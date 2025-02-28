@@ -1,0 +1,31 @@
+.todos {
+    margin: 15px 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.todo_name {
+    cursor: pointer;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.todo_changed {
+    width: 380px;
+    height: 40px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.buttons button {
+    padding: 12px 15px;
+    font-size: 16px;
+    margin-right: 20px;
+}
