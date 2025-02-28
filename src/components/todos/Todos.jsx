@@ -1,30 +1,8 @@
-import { useState } from 'react';
+
 import styles from './Todos.module.css';
 import PropTypes from 'prop-types';
 
-import { updateTodo, deleteTodo } from '../http-hooks';
-
-export const Todos = ({ id, title, completed }) => {
-    //Для того чтобы изменять задачи, если тру то будет инпут в которое вводится новое название для задачи (условный рендеринг)
-    const [isChanged, setIsChanged] = useState(false);
-    const [newTitle, setNewTitle] = useState(title);
-    //Смена состояния для условного рендеринга (измениния задач)
-    const onHandleChanged = () => {
-        setIsChanged(true);
-    }
-    //Измененная задача
-    const onChangeTitle = ({ target }) => {
-        setNewTitle(target.value);
-    }
-    //Cохранение измененной задачи
-    const onSaveChanges = () => {
-        setIsChanged(false);
-        updateTodo({ id, title: newTitle });
-    }
-    //Удаление задачи
-    const onTodoDelete = () => {
-        deleteTodo(id)
-    }
+export const Todos = ({ title, completed, isChanged, onSaveChanges, onTodoDelete, onTitleChange, onHandleChanged }) => {
 
     return (
         <div className={styles['todos']}>
@@ -39,8 +17,8 @@ export const Todos = ({ id, title, completed }) => {
                     <input 
                         className={styles['todo_changed']} 
                         type='text' 
-                        value={newTitle} 
-                        onChange={onChangeTitle}
+                        value={title} 
+                        onChange={({ target }) => onTitleChange(target.value)}
                     />
                 ) : (
                     <div onClick={onHandleChanged}>{title}</div>

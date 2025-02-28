@@ -1,0 +1,1 @@
+export const RemoveTodo = (todo, todoId) => todo.filter(({ id }) => id !== todoId);

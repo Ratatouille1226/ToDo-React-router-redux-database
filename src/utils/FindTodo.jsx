@@ -1,0 +1,1 @@
+export const FindTodo = (todo, todoId) => todo.find(({ id }) => id === todoId);

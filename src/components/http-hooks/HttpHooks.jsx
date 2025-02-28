@@ -13,7 +13,7 @@ const getDataFromServer = (method, { id, ...payload } = {}) => {
             options.body = JSON.stringify(payload);
       };
 
-      return fetch(URL, options).then(dataTodo => dataTodo.json());
+      return fetch(URL, options).then((dataTodo) => dataTodo.json())
 };
 //Создание новой задачи
 export const createNewTodo = (newTodo) => getDataFromServer('POST', newTodo);
