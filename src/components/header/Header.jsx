@@ -1,29 +1,14 @@
-import { useState } from 'react';
+
+import { SearchTodo, SortTodo } from './components/index';
 import styles from './Header.module.css';
 
-export const Header = ({ onTodoAdd }) => {
-    const [isSort, setIsSort] = useState(false);
-    const [value, setValue] = useState('');
+export const Header = ({ onTodoAdd, onSearch, onSort }) => {
 
-    //Сортировка задач
-    const onSortTodo = () => {
-
-    }
-    //Запись задачи в стейт
-    const onGetValueTodo = ({ target }) => {
-        setValue(target.value);
-    }
 
     return (
         <div className={styles['header']}>
-            <input 
-                className={styles['input_value-search']} 
-                type='text' 
-                placeholder='Найти задачу...' 
-                value={value}
-                onChange={onGetValueTodo}
-            />
-            <button onClick={onSortTodo}>{isSort ? "Откл. сортировку" : "Отсортировать"}</button>
+            <SearchTodo onSearch={onSearch}/>
+            <SortTodo onSort={onSort}/>
             <button onClick={onTodoAdd}>Добавить</button>
         </div>
     );

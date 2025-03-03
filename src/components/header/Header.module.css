@@ -12,3 +12,8 @@
     width: 400px;
     font-size: 20px;
 }
+
+.block_search {
+    display: flex;
+    gap: 15px;
+}

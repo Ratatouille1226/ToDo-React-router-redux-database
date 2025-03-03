@@ -6,21 +6,20 @@ import { RemoveTodo, SetTodo, FindTodo, AddNewTodo } from './utils/index';
 
 import styles from './App.module.css'
 
-
 //Вместо методов map, filter и тд, используются утилиты, с запросом к серверу (CRUD) операциям точно также
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [isSort, setIsSort] = useState(false);
+  const [searchValue, setSearchValue] = useState(''); //Стейт для поиска задач
+  const [isSort, setIsSort] = useState(false); //Сортировка
 
   //Получаем список дел
   useEffect(() => {
-    getNewTodo().then(setDataTodo => setTodos(setDataTodo.reverse()))
-  }, []);
+    getNewTodo(searchValue, isSort).then(setDataTodo => setTodos(setDataTodo))
+  }, [searchValue, isSort]);
 
       //Создание задачи
-      const onTodoAdd = () => {
+      const onTodoAdd = () => { 
         setTodos(AddNewTodo(todos));
       }
 
@@ -50,7 +49,7 @@ function App() {
             setTodos(RemoveTodo(todos, id)); //Удаление по айди
           })
       };
-
+      //Изменение задачи
       const onTodoTitleChange = (id, newTitle) => {
         setTodos(SetTodo(todos, { id, title: newTitle }));
       };
@@ -69,7 +68,11 @@ function App() {
 
   return (
     <div className={styles['app']}>
-      <Header onTodoAdd={onTodoAdd} />
+      <Header 
+          onTodoAdd={onTodoAdd} 
+          onSearch={setSearchValue}
+          onSort={setIsSort}
+      />
       {todos.map(({ id, title, completed, isChanged = false }) => (
         <Todos 
             key={id} 
