@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
 
-export const Header = () => {
+export const Header = ({ onTodoAdd }) => {
     const [isSort, setIsSort] = useState(false);
     const [value, setValue] = useState('');
 
-    //Добавление задачи
-    const onAddTodo = () => {
-
-    }
     //Сортировка задач
     const onSortTodo = () => {
 
@@ -23,12 +19,12 @@ export const Header = () => {
             <input 
                 className={styles['input_value-search']} 
                 type='text' 
-                placeholder='Введите задачу' 
+                placeholder='Найти задачу...' 
                 value={value}
                 onChange={onGetValueTodo}
             />
             <button onClick={onSortTodo}>{isSort ? "Откл. сортировку" : "Отсортировать"}</button>
-            <button onClick={onAddTodo}>Добавить</button>
+            <button onClick={onTodoAdd}>Добавить</button>
         </div>
     );
 }

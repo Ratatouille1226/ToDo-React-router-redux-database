@@ -2,7 +2,7 @@
 import styles from './Todos.module.css';
 import PropTypes from 'prop-types';
 
-export const Todos = ({ title, completed, isChanged, onSaveChanges, onTodoDelete, onTitleChange, onHandleChanged }) => {
+export const Todos = ({ title, completed, isChanged, onSaveChanges, onTodoDelete, onTitleChange, onHandleChanged, onComplitedTask }) => {
 
     return (
         <div className={styles['todos']}>
@@ -11,6 +11,7 @@ export const Todos = ({ title, completed, isChanged, onSaveChanges, onTodoDelete
                 type='checkbox' 
                 checked={completed} 
                 readOnly 
+                onChange={({ target }) => onComplitedTask(target.checked)}
             />
             <div className={styles['todo_name']}>
                 {isChanged ? (
@@ -21,7 +22,7 @@ export const Todos = ({ title, completed, isChanged, onSaveChanges, onTodoDelete
                         onChange={({ target }) => onTitleChange(target.value)}
                     />
                 ) : (
-                    <div onClick={onHandleChanged}>{title}</div>
+                    <div className={styles[completed ? 'complited' : null]} onClick={onHandleChanged}>{title}</div>
                 )}
             </div>
             <div className={styles['buttons']}>

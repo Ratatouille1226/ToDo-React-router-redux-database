@@ -2,8 +2,13 @@
   "todos": [
     {
       "id": 1,
-      "title": "Почитать книгу",
+      "title": "Почитать книгу ",
       "completed": false
+    },
+    {
+      "title": "Сходить в спортзал",
+      "completed": false,
+      "id": 2
     }
   ]
 }

@@ -6,12 +6,15 @@ const getDataFromServer = (method, { id, ...payload } = {}) => {
             headers: {'Content-Type': 'application/json'},
       }
 
-      //Если id тру, добавляем его к ссылке, и настройку фетча вынесли в переменную потому что
-      //js ругается на то, что у метода GET не должно быть поля body, соответсвенно добавляем его только когда есть id
-      if (id !== undefined) {
+      //Если метод не гет и не пост, добавляем id к ссылке, и настройку фетча вынесли в переменную потому что
+      //js ругается на то, что у метода GET не должно быть поля body
+      if (method !== 'GET' && method !== 'POST') {
             URL += `/${id}`;
-            options.body = JSON.stringify(payload);
       };
+
+      if (method !== 'GET' && method !== 'DELETE') {
+            options.body = JSON.stringify(payload);   
+      }
 
       return fetch(URL, options).then((dataTodo) => dataTodo.json())
 };
