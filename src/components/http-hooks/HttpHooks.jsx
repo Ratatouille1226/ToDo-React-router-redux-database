@@ -9,9 +9,14 @@ const getDataFromServer = (method, { id, ...payload } = {}) => {
       //Если метод не пост, добавляем id к ссылке, и настройку фетча вынесли в переменную потому что
       //js ругается на то, что у метода GET не должно быть поля body
       if (method === 'GET') {
-            const { searchValue, isSort } = payload;
-            const sortParams = isSort ? '_sort=title&_order=asc' : '_sort=id&_order=desc'; //Для Сортировки и поиска (параметры с документации) сортировка на стороне сервера
-            URL += `?${sortParams}&title_like=${searchValue}`;
+            if (id) {
+                  URL += `/${id}`;
+            } else {
+                  const { searchValue, isSort } = payload;
+                  const sortParams = isSort ? '_sort=title&_order=asc' : '_sort=id&_order=desc'; //Для Сортировки и поиска (параметры с документации) сортировка на стороне сервера
+                  URL += `?${sortParams}&title_like=${searchValue}`;
+            }
+
       } else {
             if (method !== 'POST') {
                   URL += `/${id}`;
@@ -31,4 +36,7 @@ export const getNewTodo = (searchValue = '', isSort = false) => getDataFromServe
 //Изменение задачи
 export const updateTodo = (updateTodo) => getDataFromServer('PATCH', updateTodo);
 //Удаление задачи
-export const deleteTodo = (deleteTodo) => getDataFromServer('DELETE', { id: deleteTodo });
+export const deleteTodo = (id) => getDataFromServer('DELETE', { id });
+
+//Получение id одной задачи
+export const readTodo = (id) => getDataFromServer('GET', { id });

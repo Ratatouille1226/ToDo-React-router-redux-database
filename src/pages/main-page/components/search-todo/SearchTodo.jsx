@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import styles from '../../Header.module.css';
+import styles from '../../../../components/header/Header.module.css'
 import { Debounce } from '../../../../utils';
 
 export const SearchTodo = ({ onSearch }) => {

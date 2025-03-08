@@ -1,15 +1,12 @@
 
-import { SearchTodo, SortTodo } from './components/index';
 import styles from './Header.module.css';
 
-export const Header = ({ onTodoAdd, onSearch, onSort }) => {
+export const Header = ({ children}) => {
 
 
     return (
         <div className={styles['header']}>
-            <SearchTodo onSearch={onSearch}/>
-            <SortTodo onSort={onSort}/>
-            <button onClick={onTodoAdd}>Добавить</button>
+            {children}
         </div>
     );
 }
